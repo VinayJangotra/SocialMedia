@@ -2,12 +2,15 @@ import React from "react";
 import Image from "next/image";
 import { BsBoundingBoxCircles } from "react-icons/bs";
 import { Inter } from "next/font/google";
-import { FaBell, FaBookmark, FaUser } from "react-icons/fa6";
-import { FaHome, FaSlackHash, FaEnvelope } from "react-icons/fa";
+import { FaBell, FaBookmark, FaUser } from "react-icons/fa";
+import { FaHome, FaSlackHash, FaEnvelope,FaMoneyBill } from "react-icons/fa";
+import FeedCard from "@/components/FeedCard";
+import { SlOptions } from "react-icons/sl";
+
 const inter = Inter({ subsets: ["latin"] });
-interface SidebarButton{
-  title:string,
-  icon:React.ReactNode
+interface SidebarButton {
+  title: string;
+  icon: React.ReactNode;
 }
 const SidebarMenu: SidebarButton[] = [
   {
@@ -31,15 +34,23 @@ const SidebarMenu: SidebarButton[] = [
     icon: <FaBookmark />,
   },
   {
+    title: "Money",
+    icon: <FaMoneyBill />,
+  },
+  {
     title: "Profile",
-    icon: <FaUser />,
+    icon: <FaUser/>,
+  },
+  {
+    title: "More",
+    icon: <SlOptions />,
   },
 ];
 export default function Home() {
   return (
     <div className={inter.className}>
       <div className="grid grid-cols-12 h-screen w-screen px-56">
-        <div className=" border  col-span-3 pt-8">
+        <div className=" border  p-4 col-span-3 pt-8">
           <div className="text-3xl h-fit w-fit hover:bg-gray-600 rounded-full p-2 cursor-pointer transition-all">
             <BsBoundingBoxCircles />
           </div>
@@ -63,7 +74,9 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="col-span-6 border-r-[1px] border-l-[1px] border-slate-500"></div>
+        <div className="col-span-6 border-r-[1px] border-l-[1px] border-slate-500 h-screen overflow-scroll">
+         <FeedCard/>
+        </div>
         <div className="col-span-3"></div>
       </div>
     </div>
